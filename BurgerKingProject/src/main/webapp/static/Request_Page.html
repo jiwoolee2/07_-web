@@ -15,9 +15,67 @@
 	
 	
 	<h1>어떻게 이렇게 생각함? 말이됨 ㅁㅁ???????????</h1>
-
+	<h2>이거는 정적자원임</h2>
+	<h2>우리는 동적 자원을 응답받아야함////</h2>
 	
+	
+	<!--
+		case 1 : 요청 URL	 -> http://127.0.0.1/bk/static/요청 URL?
+		상대 경로 방식
+		./  : 현재 폴더 위치
+		../ : 한 단계 상위 폴더 위치
+		현재 URL의 가장 마지막 /(슬래시) 뒤에 값이 붙음
+		
+		case 2 : http://www.naver.com	
+		
+		case 3 : /bk/case3 -> http://127.0.0.1/bk/case3?
+		절대 경로 방식
+		/로 시작하면 절대경로방식. 맨 앞부터 싹다 바뀜
+	-->
+	
+	<script type="text/javascript">
+		console.dir	
+	</script>
 
+	<!-- form 태그
+	내부에 작성된 값을 지정된 경로(html파일, 서버)로 제출하는 역할
+	
+       - method="get" : 주소에 데이터를 담아서 전달
+       - 데이터의 형식 : ?key=value&key=value (쿼리 스트링)
+       - key=value 같은 형식의 데이터를 "Map"이라고 함
+       key == KH정보교육원 종로지원
+       value == 서울특별시 중구 ~
+       
+       - method="POST" : HTTP BODY에 데이터를 담아서 전달
+       - 제출되는 데이터가 보이지 않음!
+	 -->
+	
+	<form action="/bk/order" method="get">
+		<span>주문하실 개수를 입력해주세요</span></br>
+		<input type="text" name="num" placeholder="아이디를 입력해주세요!"/>
+		
+		<input type="text" name="product-name" placeholder="상품명을 입력해주세ㅐ요~"/>
+		<br>
+		<button type = "submit">제출하기</button>
+	</form>
+	
+	<hr>
+
+	<form action="/bk/sign-up.do" method = "post">
+		<legend>회원가입 양식</legend>
+		
+		아이디 : <br>
+		<input type="text" name="userId" placeholder="아이디를 입력해주세요~"> <br/>
+		
+		비밀번호 : <br>
+		<input type="password" name="userPw" placeholder="비밀번호를 입력해주세요~"> <br>
+		
+		이름 : <br>
+		<input type="text" name="userName" placeholder="이름을 입력해주세요~"> <br>
+		
+		
+		<button type="submit">회원가입</button>
+	</form>
 
 
 

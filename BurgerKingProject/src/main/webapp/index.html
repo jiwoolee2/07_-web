@@ -28,10 +28,16 @@
 
 	<hr>
 	<script>
-		console.log(location);
+		// console.log(location);
+		
+		// location 객체의 href속성에 요청 url을 대입
+		function forwardRequestPage(){
+			location.href = 'http://127.0.0.1/bk/static/Request_Page.html';
+		}
+		
 	</script>
 	
-	<button onclick="경로">바로가기</button>
+	<button onclick="forwardRequestPage()">바로가기</button>
 	
 	
 </body>
