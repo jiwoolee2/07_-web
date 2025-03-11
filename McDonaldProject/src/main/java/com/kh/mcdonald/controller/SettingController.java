@@ -1,11 +1,14 @@
 package com.kh.mcdonald.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.mcdonald.model.dto.Hamburger;
 
@@ -22,7 +25,7 @@ public class SettingController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("뚜겟 잘옴??");
+		//System.out.println("뚜겟 잘옴??");
 		
 		// Servlet에서 응답데이터가 있는데?
 		// JSP에게 보내줘야함!! --> request.Attribute에 담아서
@@ -57,6 +60,27 @@ public class SettingController extends HttpServlet {
 		// requestScope
 		request.setAttribute("brand","KFC");
 		request.setAttribute("bestSeller",new Hamburger("징거버거",6200,"KFC"));
+		
+		// sessionScope
+		HttpSession session = request.getSession();
+		session.setAttribute("brand", "Mcdonald");
+		session.setAttribute("bestSeller", new Hamburger("빅맥", 6500,"Mcdonald"));
+		
+		
+		// 숫자
+		request.setAttribute("big", 10);
+		request.setAttribute("small", 3);
+		
+		// 문자
+		request.setAttribute("str","좋아하는 문꾸");
+
+		// 리스트
+		request.setAttribute("list",new ArrayList());
+		
+		
+		
+		
+		
 		
 		
 		// 응답 뷰 위임 -> 포워딩
