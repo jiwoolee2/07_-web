@@ -33,7 +33,6 @@ public class JstlController extends HttpServlet {
 		String[] colors = {"red","orange","yellow","purple"};
 		
 		request.setAttribute("colors",colors);
-		
 			
 		// TB_USER 가지고 할 것
 		List<UserDTO> list = new UserService().findAll();		

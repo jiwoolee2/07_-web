@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,6 @@
 	
 	절대 경로 방식 : /bm/sc
 	상대 경로 방식 : sc
-	
 	
 	<a href = "sc">안 써보셨음? 왜 안씀? 집에서 안함?</a>
 	

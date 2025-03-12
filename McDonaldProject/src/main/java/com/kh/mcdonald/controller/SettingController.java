@@ -3,6 +3,7 @@ package com.kh.mcdonald.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,6 +67,9 @@ public class SettingController extends HttpServlet {
 		session.setAttribute("brand", "Mcdonald");
 		session.setAttribute("bestSeller", new Hamburger("빅맥", 6500,"Mcdonald"));
 		
+		// requestScope , sessionScope에 저장된 키 값이 모두 같음!!
+		// -> 이럴 경우 page => request => session => application 순으로 키값을 검색
+		
 		
 		// 숫자
 		request.setAttribute("big", 10);
@@ -77,19 +81,11 @@ public class SettingController extends HttpServlet {
 		// 리스트
 		request.setAttribute("list",new ArrayList());
 		
-		
-		
-		
-		
-		
-		
+		// 응답페이지를 JSP에게 위임(배정)
+		// RequestDispatcher
 		// 응답 뷰 위임 -> 포워딩
-		request.getRequestDispatcher("/WEB-INF/views/print.jsp")
-		.forward(request,response);
-		
-		
-		
-		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/print.jsp");
+		view.forward(request,response);
 		
 	}
 

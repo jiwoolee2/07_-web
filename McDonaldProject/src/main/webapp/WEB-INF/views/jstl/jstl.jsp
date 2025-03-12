@@ -139,7 +139,7 @@
 					</tr>
 				</c:when>
 				<c:otherwise>
-               		<c:forEach items="${requestScope.users }" var = "user">
+               		<c:forEach items="${ requestScope.users }" var = "user">
 	                  <tr>
 	                     <td>${ user.userNo }</td>
 	                     <td>${ user.userName }</td>
