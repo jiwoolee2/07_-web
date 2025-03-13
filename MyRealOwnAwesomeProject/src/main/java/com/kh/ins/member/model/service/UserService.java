@@ -10,4 +10,10 @@ public class UserService {
 		UserDTO loginUser = new UserDAO().login(user);
 		return loginUser;
 	}
+	
+	public void signUp(UserDTO user) {
+		
+		new UserDAO().signUp(user);
+		
+	}
 }

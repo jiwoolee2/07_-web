@@ -1,6 +1,7 @@
 package com.kh.ins.member.model.dao;
 
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,9 +41,11 @@ public class UserDAO {
 			Connection conn = DriverManager.getConnection(
 			"jdbc:oracle:thin:@112.221.156.34:12345:XE","KH18_LJW","KH1234");
 			PreparedStatement pstmt = conn.prepareStatement(sql);
+				
 			
 				
 			){
+			
 			pstmt.setString(1,user.getUserId());
 			pstmt.setString(2,user.getUserPw());
 			ResultSet rset = pstmt.executeQuery();
@@ -65,4 +68,95 @@ public class UserDAO {
 		return loginUser;
 		
 	}
+	
+	
+	
+	public void signUp(UserDTO user) {
+		
+		String sql = """
+						INSERT INTO USER_TB VALUES
+						(?,?,?,?,SYSDATE)
+					""";
+		
+		int result = 0;
+		
+		try (
+			
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@112.221.156.34:12345:XE","KH18_LJW","KH1234");
+			PreparedStatement pstmt = conn.prepareStatement(sql);)
+		{
+			pstmt.setInt(1, user.getUserNo());
+			pstmt.setString(2, user.getUserId());
+			pstmt.setString(3, user.getUserPw());
+			pstmt.setString(4, user.getUserName());
+			
+		
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

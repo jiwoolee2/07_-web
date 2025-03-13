@@ -117,6 +117,9 @@
 	          </li>
 	          <li class="nav-item">
 	          <a class="nav-link js-scroll-trigger" href="logout" onclick="return confirm('진짜로 로그아웃 하려고?')">로그아웃</a>
+	          <!-- a태그에 적힌 주소로 가기 전에 onclick이 return false가 되면 로그아웃 취소,
+	          -> 기본 이벤트 수행 안됨 
+	          true면 로그아웃 -->
 	          </li>
           	</c:otherwise>
           </c:choose>

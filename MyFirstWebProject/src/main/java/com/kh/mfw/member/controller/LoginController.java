@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
 		
 		// case 2. 유효성 검증에 통과하지 못했거나, 아이디 또는 비밀번호가 일치하지 않았다면
 		//			null값 반환
-		System.out.println(loginMember);
+	
 		
 		// 4) 응답 화면 만들기
 		// request.setAttribute("loginMember", loginMember);

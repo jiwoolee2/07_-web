@@ -24,4 +24,94 @@ public class MemberService {
 		MemberDTO loginMember = new MemberDAO().login(member);
 		return loginMember;
 	}
+	
+	public int signUp(MemberDTO member) {
+		
+		// UNIQUE가 적용된 memberId 중복 검사
+		
+		int result = new MemberDAO().checkId(member.getMemberId());
+		
+		if(result > 0) {
+			return result;
+		} 
+		
+		new MemberDAO().signUp(member);
+		return result;
+	}
+	
+	
+	
+	
+	public void modify(MemberDTO member) {
+		
+		new MemberDAO().modify(member);
+	}
+	
+	
+	
+	
+	public int newPassword(String memberId, String changePw , String userPw) {
+		
+		int result = new MemberDAO().newPassword(memberId,changePw,userPw);
+		
+		return result;
+	}
+	
+	
+	
+	public int quit(String memberId, String memberPw,String inputPw) {
+		
+		int result = 0;
+		
+		if(memberPw.equals(inputPw)) {
+			result = new MemberDAO().quit(memberId);
+			return result;
+		} else {
+			return result;
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

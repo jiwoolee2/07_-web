@@ -19,6 +19,10 @@
 				아이디 : <input name="userId" placeholder="아이디를 입력해주세요">
 				비밀번호 : <input name="userPw" placeholder="비밀번호를 입력해주세요">
 				<button>로그인로그로그인</button>
+			</form>
+					
+			<form action="signup-page" method="post" name="signup">
+				<button>회원가입</button>
 			</form>		
 		</c:when>
 		<c:otherwise>
