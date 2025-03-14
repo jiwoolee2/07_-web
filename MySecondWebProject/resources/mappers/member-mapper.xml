@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberMapper">
+<!-- namespace : 해당 mapper만을 식별하기 위한 고유한 별칭 -->	
+
+
+	<!-- 앞에서는 JDBC객체를 사용해서 영속성 작업을 하기 위해서
+	pstmt객체에 sql문을 전달하여 위치홀더를 코드상에서 채워줬지만
+	Mybatis를 이용하면 위치홀더 대신 해당 SQL문에 전달된 객체로 부터 값을 꺼내서 사용
+	 -->
+
+	<!-- #{ 필드명 } => getter메서드 호출 -->
+	
+	<!-- 
+	- select,insert,update,delete 여러개의 태그를 작성.
+	- 여러개의 같은 태그가 존재 할 수 있기 때문에 id속성을 이용해서 구별
+	- sql문이 미완성일 때 외부에서 값을 가져와야 함. 이떄 파라미터가 어떤타입인지 기술 -> parameterType 
+	- select문의 경우에는 반환 타입도 필요. 
+		-> resultType : 조회결과를 반환하는 자바타입작성
+	   또는 resultMap  : 조회결과를 뽑아서 매핑할 resultMap의 id
+	
+	 -->
+			
+	<select id="login" parameterType="com.kh.mfw.member.model.dto.MemberDTO"
+	 resultType ="com.kh.mfw.member.model.dto.MemberDTO">
+		SELECT
+				MEMBER_ID memberId,  
+				MEMBER_PW memberPw,
+				MEMBER_NAME memberName,
+				EMAIL,
+				ENROLL_DATE enrollDate
+		  FROM
+				KH_MEMBER
+		 WHERE
+				MEMBER_ID = #{ memberId }
+		 AND
+				MEMBER_PW = #{ memberPw }
+	
+	</select>
+
+
+
+	<select id="checkId" 
+			parameterType="string"
+			resultType="_int">
+		SELECT 
+			   COUNT(*)
+		 FROM  
+		 	   KH_MEMBER
+		WHERE
+			   MEMBER_ID = #{ memberId }
+	
+	</select>
+
+
+
+	<insert id="signUp"
+			parameterType="memberDTO">
+		
+		INSERT
+			INTO
+				KH_MEMBER
+			VALUES
+					(
+					  #{ memberId }
+					, #{ memberPw }
+					, #{ memberName }
+					, #{ email }
+					, DEFAULT
+					)
+	
+	
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

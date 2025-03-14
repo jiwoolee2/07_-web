@@ -30,7 +30,7 @@ public class Template {
 		 SqlSession sqlSession = null;
 		 
 		 try {
-			 InputStream stream = Resources.getResourceAsStream("/mybatis-congif.xml"); // inputStream 반환
+			 InputStream stream = Resources.getResourceAsStream("/mybatis-config.xml"); // inputStream 반환
 			
 			 // 1단계 : SqlSessionFactoryBuilder 객체 생성
 			 //		그냥 생성자 호출하면 됨
