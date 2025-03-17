@@ -30,7 +30,7 @@ public class SignUpController extends HttpServlet {
 		String userName = request.getParameter("userName");
 		
 		UserDTO user = new UserDTO(userNo,userId,userPw,userName,null);
-		new UserService().signUp(user);
+		int result = new UserService().signUp(user);
 		
 		response.sendRedirect(request.getContextPath());
 	}

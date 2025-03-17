@@ -17,9 +17,19 @@ public class UserService {
 		return loginUser;
 	}
 	
-	public void signUp(UserDTO user) {
+	public int signUp(UserDTO user) {
 		
-		new UserDAO().signUp(user);
+
+		SqlSession sqlSession = getSqlSession();
 		
+		if(new UserDAO().checkId(sqlSession,user) > 0 ){
+			return 0;
+		}
+
+		int result = new UserDAO().signUp(sqlSession,user);
+		sqlSession.commit();
+		sqlSession.close();
+		
+		return result;
 	}
 }

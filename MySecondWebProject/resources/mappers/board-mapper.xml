@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+<!-- namespace : 해당 mapper만을 식별하기 위한 고유한 별칭 -->	
+
+
+	<!-- 앞에서는 JDBC객체를 사용해서 영속성 작업을 하기 위해서
+	pstmt객체에 sql문을 전달하여 위치홀더를 코드상에서 채워줬지만
+	Mybatis를 이용하면 위치홀더 대신 해당 SQL문에 전달된 객체로 부터 값을 꺼내서 사용
+	 -->
+
+	<!-- #{ 필드명 } => getter메서드 호출 -->
+	
+	<!-- 
+	- select,insert,update,delete 여러개의 태그를 작성.
+	- 여러개의 같은 태그가 존재 할 수 있기 때문에 id속성을 이용해서 구별
+	- sql문이 미완성일 때 외부에서 값을 가져와야 함. 이떄 파라미터가 어떤타입인지 기술 -> parameterType 
+	- select문의 경우에는 반환 타입도 필요. 
+		-> resultType : 조회결과를 반환하는 자바타입작성
+	   또는 resultMap  : 조회결과를 뽑아서 매핑할 resultMap의 id
+	
+	 -->
+	 
+	 <insert id="insertBoard" parameterType="boardDTO">
+	 	INSERT
+	 		INTO
+	 			KH_BOARD
+	 	VALUES
+	 			(
+	 			SEQ_KH_BOARD.NEXTVAL
+	 		   ,#{boardCategory}
+	 		   ,#{boardWriter}
+	 		   ,#{boardTitle}
+	 		   ,#{boardContent}
+	 		   ,DEFAULT
+	 		   ,DEFAULT	 			
+	 			)
+	 
+	 </insert>
+			
+			
+			
+	<sql id="boardColumns">
+		SELECT
+			BOARD_NO boardNo,
+			BOARD_CATEGORY boardCategory,
+			MEMBER_NAME boardWriter,
+			BOARD_TITLE boardTitle,
+			CREATE_DATE createDate,
+			COUNT
+	</sql>
+	
+
+
+	<select id="selectBoards"
+	resultType="boardDTO">
+		<include refid="boardColumns"/>
+		SELECT
+			BOARD_NO boardNo,
+			BOARD_CATEGORY boardCategory,
+			MEMBER_NAME boardWriter,
+			BOARD_TITLE boardTitle,
+			CREATE_DATE createDate,
+			COUNT
+		FROM
+			KH_BOARD
+		JOIN
+			KH_MEMBER ON (BOARD_WRITER = MEMBER_ID)
+		ORDER
+		   BY
+			CREATE_DATE DESC
+	</select>
+	
+	
+	<select id="selectBoardCount" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			KH_BOARD
+	</select>
+	
+	
+	<update id="increaseCount"
+			parameterType="_int">
+		UPDATE
+				KH_BOARD
+		   SET
+		   		COUNT = COUNT +1
+		  WHERE
+		  		BOARD_NO=#{boardNo}
+	</update>
+	
+	
+	<select id="findByBoardNo"
+			parameterType="_int"
+			resultType="boardDTO">
+		<include refid="boardColumns"/>
+			, BOARD_CONTENT boardContent
+			
+		FROM
+			 KH_BOARD
+		JOIN
+			 KH_MEMBER ON (BOARD_WRITER=MEMBER_ID)
+		WHERE
+			 BOARD_NO = ${boardNo}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

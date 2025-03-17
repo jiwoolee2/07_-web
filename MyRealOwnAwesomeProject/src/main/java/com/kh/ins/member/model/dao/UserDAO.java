@@ -14,53 +14,26 @@ import com.kh.ins.member.model.dto.UserDTO;
 
 public class UserDAO {
 	
-	static {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	public UserDTO login(SqlSession sqlSession, UserDTO user) {
 		
-		
-		
-		return sqlSession.selectOne("userMapper",user);
-		
+		return sqlSession.selectOne("userMapper.login",user);
 	}
 	
 	
 	
-	public void signUp(UserDTO user) {
+	public int checkId(SqlSession sqlSession, UserDTO user) {
 		
-		String sql = """
-						INSERT INTO USER_TB VALUES
-						(?,?,?,?,SYSDATE)
-					""";
-		
-		int result = 0;
-		
-		try (
-			
-			Connection conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@112.221.156.34:12345:XE","KH18_LJW","KH1234");
-			PreparedStatement pstmt = conn.prepareStatement(sql);)
-		{
-			pstmt.setInt(1, user.getUserNo());
-			pstmt.setString(2, user.getUserId());
-			pstmt.setString(3, user.getUserPw());
-			pstmt.setString(4, user.getUserName());
-			
-		
-			
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-				
+		return (Integer)sqlSession.selectOne("userMapper.checkid",user);
 	}
 	
+	
+	public int signUp(SqlSession sqlSession, UserDTO user) {
+		
+		return sqlSession.insert("userMapper.signup",user);
+	}
+	 
 	
 	
 	

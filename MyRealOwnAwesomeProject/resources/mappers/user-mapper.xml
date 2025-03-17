@@ -14,13 +14,34 @@
 		WHERE
 			   USER_ID = #{userId}
 		 AND
-			   USER_PW = #{userPw}
-		
-		""";	
-	
+			   USER_PW = #{userPw}	
 	</select>
 
-
+	<select id="checkid" parameterType="string" resultType="_int">
+		SELECT 
+			   COUNT(*)
+		FROM
+			   TB_USER
+		WHERE
+			   USER_ID = #{userId}
+	
+	</select>
+	
+	
+	
+	<insert id="signup" parameterType="com.kh.ins.member.model.dto.UserDTO">
+		
+		INSERT 
+			INTO 
+				USER_TB 
+			VALUES
+				(#{userNo}
+				,#{userId}
+				,#{userPw}
+				,#{userName}
+				,SYSDATE)
+	
+	</insert>
 
 
 
